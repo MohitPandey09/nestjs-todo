@@ -8,7 +8,7 @@ export class TodoService {
     @InjectModel(TodoModel) private todoModel: typeof TodoModel
   ) {}
 
-  public createTodo(data: any) {
+  public createTodo(data: Pick<TodoModel, 'title' | 'description'>) {
     return this.todoModel.build().set(data).save();
   }
 }
