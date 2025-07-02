@@ -4,9 +4,7 @@ import { UserModel } from '../../database/models/user.model';
 
 @Injectable()
 export class AuthService {
-  constructor(
-    @InjectModel(UserModel) private userModel: typeof UserModel
-  ) {}
+  constructor(@InjectModel(UserModel) private userModel: typeof UserModel) {}
 
   public login() {}
 

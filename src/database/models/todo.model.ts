@@ -1,15 +1,15 @@
 import { AutoIncrement, Column, Model, PrimaryKey, Table } from 'sequelize-typescript';
 
-@Table({ tableName: "todo", createdAt: false, updatedAt: false })
+@Table({ tableName: 'todo', createdAt: false, updatedAt: false })
 export class TodoModel extends Model<TodoModel> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number;
+  declare id: number;
 
   @Column
-  title: string;
+  declare title: string;
 
   @Column
-  description: string;
+  declare description: string;
 }

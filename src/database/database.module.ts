@@ -4,15 +4,15 @@ import { SequelizeModule } from '@nestjs/sequelize';
 @Module({
   imports: [
     SequelizeModule.forRoot({
-      database: "todo",
-      username: "root",
-      password: "password",
-      host: "localhost",
+      database: 'todo',
+      username: 'root',
+      password: 'password',
+      host: 'localhost',
       port: 3306,
-      dialect: "mysql",
-      autoLoadModels: true
-    })
+      dialect: 'mysql',
+      autoLoadModels: true,
+    }),
   ],
-  exports: [SequelizeModule]
+  exports: [SequelizeModule],
 })
 export class DatabaseModule {}
