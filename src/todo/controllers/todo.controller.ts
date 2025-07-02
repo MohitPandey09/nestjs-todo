@@ -1,5 +1,6 @@
-import { Body, Controller, Inject, Post } from '@nestjs/common';
+import { Body, Controller, HttpException, Inject, Post, UsePipes, ValidationPipe } from '@nestjs/common';
 import { TodoService } from '../services/todo.service';
+import { CreateTodoDto } from '../dto/create-todo.dto';
 
 @Controller('todo')
 export class TodoController {
@@ -7,8 +8,9 @@ export class TodoController {
     @Inject(TodoService) private todoService: TodoService
   ) {}
 
+  @UsePipes(ValidationPipe)
   @Post()
-  public create(@Body() data: any) {
+  public create(@Body() data: CreateTodoDto) {
     return this.todoService.createTodo(data);
   }
 }
