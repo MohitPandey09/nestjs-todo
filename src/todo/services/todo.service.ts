@@ -15,6 +15,10 @@ export class TodoService {
     return todo.set(data).save();
   }
 
+  public deleteTodo(todo: TodoModel): Promise<number> {
+    return todo.destroy();
+  }
+
   public findById(id: number): Promise<TodoModel> {
     return this.todoModel.findByPk(id);
   }
