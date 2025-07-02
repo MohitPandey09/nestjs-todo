@@ -1,6 +1,6 @@
 import {
   Body,
-  Controller, HttpCode,
+  Controller, Delete, HttpCode,
   HttpException, HttpStatus,
   Inject,
   Param,
@@ -19,7 +19,8 @@ import { ApiParam } from '@nestjs/swagger';
 
 @Controller('todo')
 export class TodoController {
-  constructor(@Inject(TodoService) private todoService: TodoService) {}
+  constructor(@Inject(TodoService) private todoService: TodoService) {
+  }
 
   @UsePipes(ValidationPipe)
   @HttpCode(HttpStatus.CREATED)
@@ -37,5 +38,12 @@ export class TodoController {
     @Param('todoId', ParseIntPipe, MapTodoPipe) todo: TodoModel,
   ) {
     return this.todoService.updateTodo(todo, data);
+  }
+
+  @ApiParam({ type: Number, name: 'todoId' })
+  @HttpCode(HttpStatus.NO_CONTENT)
+  @Delete(':todoId')
+  public delete(@Param('todoId', ParseIntPipe, MapTodoPipe) todo: TodoModel) {
+    return this.todoService.deleteTodo(todo);
   }
 }
