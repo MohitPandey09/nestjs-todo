@@ -7,10 +7,6 @@ import { UserModel } from '../database/models/user.model';
 @Module({
   controllers: [AuthController],
   providers: [AuthService],
-  imports: [
-    SequelizeModule.forFeature([
-      UserModel
-    ])
-  ]
+  imports: [SequelizeModule.forFeature([UserModel])],
 })
 export class AuthModule {}

@@ -1,17 +1,17 @@
 import { Column, Model, PrimaryKey, Table } from 'sequelize-typescript';
 
-@Table({ tableName: "users", createdAt: false, updatedAt: false })
+@Table({ tableName: 'users', createdAt: false, updatedAt: false })
 export class UserModel extends Model<UserModel> {
   @PrimaryKey
   @Column
-  id: number;
+  declare id: number;
 
   @Column
-  name: string;
+  declare name: string;
 
   @Column
-  email: string;
+  declare email: string;
 
   @Column
-  password: string;
+  declare password: string;
 }
