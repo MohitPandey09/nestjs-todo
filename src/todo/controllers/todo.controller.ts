@@ -1,6 +1,6 @@
 import {
   Body,
-  Controller, Delete, HttpCode,
+  Controller, Delete, Get, HttpCode,
   HttpException, HttpStatus,
   Inject,
   Param,
@@ -15,11 +15,18 @@ import { CreateTodoDto } from '../dto/create-todo.dto';
 import { UpdateTodoDto } from '../dto/update-todo.dto';
 import { MapTodoPipe } from '../pipes/map-todo.pipe';
 import { TodoModel } from '../../database/models/todo.model';
-import { ApiParam } from '@nestjs/swagger';
+import { ApiOkResponse, ApiParam } from '@nestjs/swagger';
 
-@Controller('todo')
+@Controller('todos')
 export class TodoController {
   constructor(@Inject(TodoService) private todoService: TodoService) {
+  }
+
+  @HttpCode(HttpStatus.OK)
+  @ApiOkResponse({ type: TodoModel, isArray: true })
+  @Get()
+  public list() {
+    return this.todoService.listTodo();
   }
 
   @UsePipes(ValidationPipe)

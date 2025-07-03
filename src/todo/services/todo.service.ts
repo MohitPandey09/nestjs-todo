@@ -7,6 +7,10 @@ export class TodoService {
   constructor(@InjectModel(TodoModel) private todoModel: typeof TodoModel) {
   }
 
+  public listTodo(): Promise<TodoModel[]> {
+    return this.todoModel.findAll();
+  }
+
   public createTodo(data: Pick<TodoModel, 'title' | 'description'>): Promise<TodoModel> {
     return this.todoModel.build().set(data).save();
   }
@@ -15,7 +19,7 @@ export class TodoService {
     return todo.set(data).save();
   }
 
-  public deleteTodo(todo: TodoModel): Promise<number> {
+  public deleteTodo(todo: TodoModel): Promise<void> {
     return todo.destroy();
   }
 
